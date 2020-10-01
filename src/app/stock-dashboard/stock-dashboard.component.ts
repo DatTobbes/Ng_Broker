@@ -12,16 +12,16 @@ export class StockDashboardComponent implements OnInit, OnDestroy {
 
   stocksList: Stock[] = [];
   pageActive = true;
-  test = new Subscription()
+  subscription = new Subscription();
   constructor(private updateStockService: UpdateStocksService) { }
 
   ngOnInit(): void {
-    this.test = this.updateStockService.loadStocksSubject.pipe(
+    this.subscription = this.updateStockService.loadStocksSubject.pipe(
       takeWhile(() => this.pageActive)
-      ).subscribe(() => {
-        this.getStocks();
-      });
+    ).subscribe(() => {
       this.getStocks();
+    });
+    this.getStocks();
   }
 
   getStocks(): void {
@@ -29,11 +29,16 @@ export class StockDashboardComponent implements OnInit, OnDestroy {
       this.stocksList = stocks;
     });
   }
+  remove(stock: Stock) {
+    const index = this.stocksList.findIndex(x => x.name === stock.name);
+    this.updateStockService.removeFromStockNames(index);
+    this.getStocks();
+  }
 
-  setColor(stock:Stock) {
+  setColor(change: number) {
     return {
-      positiv: stock.changeinPercent.includes('+'),
-      negativ: stock.changeinPercent.includes('-')
+      positiv: change > 0,
+      negativ: change < 0
     };
   }
   ngOnDestroy() {

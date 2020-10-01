@@ -8,11 +8,11 @@ import { UpdateStocksService } from './update-stocks.service';
 })
 export class AppComponent {
 
-  
-  constructor(private updateStockService:UpdateStocksService){}
 
-  refresh(){
+  constructor(private updateStockService: UpdateStocksService) { }
+
+  refresh() {
     this.updateStockService.loadStocksSubject.next(true);
-    
+
   }
 }

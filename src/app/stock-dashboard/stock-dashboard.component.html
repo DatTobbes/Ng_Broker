@@ -9,11 +9,11 @@
                         <div id="DateTime">{{stock.lastTradeTime}}</div>
 
                         <div id="LastTradePrice" class="col s6" style="padding-left: 0;font-size: 22px;">{{stock.lastTradePriceOnly}}</div>
-                        <div id="Change" class="col offset-s2 s2">{{stock.change}}</div>
-                        <div id="ChangeinPercent" class="col s2" [ngClass]="setColor(stock)">{{stock.changeinPercent}}</div>
+                        <div id="Change" class="col offset-s2 s2"[ngClass]="setColor(stock.change)">{{stock.change}}</div>
+                        <div id="ChangeinPercent" class="col s2">{{stock.changeinPercent}}</div>
                     </div>
                     <div class="card-action">
-                        <a href="#">Merken</a>
+                        <a href="#" (click)="remove(stock)">entfernen</a>
                         <a href="#">Kaufen</a>
                     </div>
                 </div>
