@@ -1,0 +1,10 @@
+<div id="newStock" class="row">
+    <div class="input-field col s8 m6">
+        <input id="name" type="text" class="validate" [(ngModel)]="stockName">
+        <label class="active" for="name">Name</label>
+    </div>
+    <div class="col s4">
+        <button id="addStock" class="btn waves-effect waves-light blue darken-1"
+            style="margin-top: 20px;" (click)="addStock()">OK</button>
+    </div>
+</div>
